@@ -58,27 +58,16 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('InAppWebView Example'),
-        ),
         body: Column(children: <Widget>[
-          Container(
-            padding: const EdgeInsets.all(20.0),
-            child: Text(
-                "CURRENT URL\n${(url.length > 50) ? url.substring(0, 50) + "..." : url}"),
-          ),
-          Container(
-              padding: const EdgeInsets.all(10.0),
-              child: progress < 1.0
-                  ? LinearProgressIndicator(value: progress)
-                  : Container()),
           Expanded(
             child: Container(
-              margin: const EdgeInsets.all(10.0),
+              margin: const EdgeInsets.all(0.0),
               decoration:
                   BoxDecoration(border: Border.all(color: Colors.blueAccent)),
               child: InAppWebView(
-                initialUrlRequest: URLRequest(url: Uri.parse("https://flutter.dev/")),
+                initialUrlRequest: URLRequest(
+                    url: Uri.parse(
+                        "https://aws-staging.d3e3nuj8f2v05x.amplifyapp.com/")),
                 initialOptions: InAppWebViewGroupOptions(
                     crossPlatform: InAppWebViewOptions()),
                 onWebViewCreated: (InAppWebViewController controller) {
@@ -103,35 +92,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
               ),
             ),
-          ),
-          ButtonBar(
-            alignment: MainAxisAlignment.center,
-            children: <Widget>[
-              ElevatedButton(
-                child: const Icon(Icons.arrow_back),
-                onPressed: () {
-                  if (_webViewController != null) {
-                    _webViewController!.goBack();
-                  }
-                },
-              ),
-              ElevatedButton(
-                child: const Icon(Icons.arrow_forward),
-                onPressed: () {
-                  if (_webViewController != null) {
-                    _webViewController!.goForward();
-                  }
-                },
-              ),
-              ElevatedButton(
-                child: const Icon(Icons.refresh),
-                onPressed: () {
-                  if (_webViewController != null) {
-                    _webViewController!.reload();
-                  }
-                },
-              ),
-            ],
           ),
         ]),
       ),
